@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+
+  proxy:
+    build: ./proxy
+    restart: always
+    expose:
+      - 5000
+    ports:
+      - 5000:80
+
+  site:
+    build: ./site
+    restart: always
+    expose:
+      - 8080
+    ports:
+      - 8080:80
+      
+    

@@ -15,19 +15,14 @@
 #
 # VERSION   0.0.1
 
-FROM nginx
+FROM nginx:1.17
 
 MAINTAINER Evan Brown <evanbrown@google.com>
 
 RUN rm /etc/nginx/conf.d/*.conf
+ADD nginx.conf /etc/nginx/
+ADD proxy.conf /etc/nginx/conf.d/
 
-RUN mkdir -p /etc/nginx/extra-conf.d
-
-WORKDIR /usr/src
-
-ADD start.sh /usr/src/
-ADD nginx/nginx.conf /etc/nginx/
-ADD nginx/proxy*.conf /usr/src/
-ADD nginx/extra/*.conf /etc/nginx/extra-conf.d/
-
-ENTRYPOINT ./start.sh
+EXPOSE 80
+ENTRYPOINT ["/usr/sbin/nginx"]
+CMD ["-g", "daemon off;"]
