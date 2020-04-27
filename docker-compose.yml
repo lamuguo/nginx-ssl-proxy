@@ -6,16 +6,19 @@ services:
     build: ./proxy
     restart: always
     expose:
-      - 5000
+      - 80
+      - 443
     ports:
-      - 5000:80
+      - 80:80
+      - 443:443
 
   site:
     build: ./site
     restart: always
-    expose:
-      - 8080
-    ports:
-      - 8080:80
+    # TODO(lamuguo): Disable export and ports below.
+    # expose:
+    #  - 8080
+    #ports:
+    #  - 8080:80
       
     

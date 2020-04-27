@@ -22,7 +22,9 @@ MAINTAINER Evan Brown <evanbrown@google.com>
 RUN rm /etc/nginx/conf.d/*.conf
 ADD nginx.conf /etc/nginx/
 ADD proxy.conf /etc/nginx/conf.d/
+ADD etc/letsencrypt /etc/letsencrypt
 
 EXPOSE 80
 ENTRYPOINT ["/usr/sbin/nginx"]
 CMD ["-g", "daemon off;"]
+# CMD tail -f /dev/null
